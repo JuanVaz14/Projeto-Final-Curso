@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% block title %}Em Construção{% endblock %}
+
+{% block main_content %}
+<div class="row justify-content-center text-center pt-5">
+    <div class="col-md-10">
+        <h1 class="mt-5 display-4">App '{{ app_name|default:"Esta Página" }}' em Construção</h1>
+        <p class="lead">O layout gráfico está funcionando! Agora, vamos desenvolver esta página.</p>
+        <p><a href="{% url 'accounts:dashboard' %}" class="btn btn-secondary mt-3">Voltar ao Dashboard</a></p>
+    </div>
+</div>
+{% endblock main_content %}

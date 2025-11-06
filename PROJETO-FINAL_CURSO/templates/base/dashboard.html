@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block main_content %}
+<h1 class="mb-4">Dashboard Principal</h1>
+<p class="lead">Visão geral do sistema. Olá, **{{ user.get_full_name|default:user.username }}**!</p>
+
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-primary shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col me-2"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Empresas Cadastradas</div><div class="h5 mb-0 font-weight-bold text-gray-800">120</div></div></div></div></div><a href="{% url 'empresas:home' %}" class="card-footer bg-white text-primary small">Ver Detalhes &rarr;</a></div>
+    <div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-success shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col me-2"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">Projetos Ativos</div><div class="h5 mb-0 font-weight-bold text-gray-800">45</div></div></div></div></div><a href="{% url 'projetos:home' %}" class="card-footer bg-white text-success small">Ver Projetos &rarr;</a></div>
+    <div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-warning shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col me-2"><div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesquisas Pendentes</div><div class="h5 mb-0 font-weight-bold text-gray-800">5</div></div></div></div></div><a href="{% url 'pesquisas:home' %}" class="card-footer bg-white text-warning small">Responder &rarr;</a></div>
+    <div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-info shadow h-100 py-2"><div class="card-body"><div class="row no-gutters align-items-center"><div class="col me-2"><div class="text-xs font-weight-bold text-info text-uppercase mb-1">Seu Perfil</div><div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.tipo_usuario|default:"Não Definido" }}</div></div></div></div></div></div>
+</div>
+
+<hr>
+<div class="alert alert-info">
+    Clique nos links na barra lateral (Sidebar) para navegar para as páginas "Em Construção".
+</div>
+{% endblock main_content %}

@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block title %}Home - {{ titulo }}{% endblock %}
+{% block main_content %}
+<div class="row justify-content-center text-center pt-5">
+    <div class="col-md-8">
+        <h1 class="display-4 mt-5">Bem-vindo à Intranet ACJogos-RJ!</h1>
+        <p class="lead">O servidor está funcionando e a estrutura está pronta.</p>
+        <hr class="my-4">
+        <p>Acesse as áreas do sistema:</p>
+        <p class="mt-4">
+            <a class="btn btn-primary btn-lg me-2" href="{% url 'accounts:login' %}" role="button">Fazer Login</a>
+            <a class="btn btn-success btn-lg me-2" href="{% url 'accounts:registrar' %}" role="button">Criar Conta</a>
+            <a class="btn btn-secondary btn-lg" href="/admin/" role="button">Admin (Apenas Superusuários)</a>
+        </p>
+    </div>
+</div>
+{% endblock main_content %}
