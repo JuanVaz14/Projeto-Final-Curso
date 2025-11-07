@@ -5,15 +5,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # App de autenticação (accounts)
-    path('', include(('accounts.urls', 'accounts'), namespace='accounts')),
-
-    # Outros apps
-    path('empresas/', include(('empresas.urls', 'empresas'), namespace='empresas')),
-    path('projetos/', include(('projetos.urls', 'projetos'), namespace='projetos')),
-    path('pesquisas/', include(('pesquisas.urls', 'pesquisas'), namespace='pesquisas')),
-    path('links/', include(('links.urls', 'links'), namespace='links')),
+    path('', include('accounts.urls')),
+    path('empresas/', include('empresas.urls')),
+    path('projetos/', include('projetos.urls')),
+    path('pesquisas/', include('pesquisas.urls')),
+    path('links/', include('links.urls')),
 ]
 
 if settings.DEBUG:
