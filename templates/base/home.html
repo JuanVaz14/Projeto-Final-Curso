@@ -1,17 +1,75 @@
-{% extends "base/base.html" %}
-{% block title %}Home - {{ titulo }}{% endblock %}
-{% block main_content %}
-<div class="row justify-content-center text-center pt-5">
-    <div class="col-md-8">
-        <h1 class="display-4 mt-5">Bem-vindo à Intranet ACJogos-RJ!</h1>
-        <p class="lead">O servidor está funcionando e a estrutura está pronta.</p>
-        <hr class="my-4">
-        <p>Acesse as áreas do sistema:</p>
-        <p class="mt-4">
-            <a class="btn btn-primary btn-lg me-2" href="{% url 'accounts:login' %}" role="button">Fazer Login</a>
-            <a class="btn btn-success btn-lg me-2" href="{% url 'accounts:registrar' %}" role="button">Criar Conta</a>
-            <a class="btn btn-secondary btn-lg" href="/admin/" role="button">Admin (Apenas Superusuários)</a>
-        </p>
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+body {
+    background: radial-gradient(circle at top, #0a0a0a, #000);
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+.hero {
+    text-align: center;
+    margin-top: 12vh;
+    animation: fadeNeon 1.5s ease-out forwards;
+    opacity: 0;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.btn-gamer {
+    background: linear-gradient(90deg, #00ffff, #0088ff);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.btn-gamer:hover {
+    background: linear-gradient(90deg, #0088ff, #00ffff);
+    box-shadow: 0 0 20px #00ffff;
+}
+
+@keyframes fadeNeon {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+        text-shadow: 0 0 0px #00ffff;
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+        text-shadow: 0 0 15px #00ffff;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 5px #00ffff;
+    }
+}
+</style>
+
+<div class="hero">
+    <h1>🎮 Bem-vindo à Intranet ACJogos</h1>
+    <p>Sistema interno para gestão de projetos, empresas e eventos esportivos.</p>
+    <div class="mt-4">
+        <a href="{% url 'accounts:login' %}" class="btn btn-gamer">Entrar</a>
+        <a href="{% url 'accounts:registrar' %}" class="btn btn-gamer ms-2">Registrar</a>
     </div>
 </div>
-{% endblock main_content %}
+{% endblock %}

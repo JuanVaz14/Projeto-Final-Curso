@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+body {
+    background: radial-gradient(circle at top, #121212, #000);
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card-gamer {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #2a2a2a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    color: #fff;
+}
+
+.btn-gamer {
+    background: linear-gradient(90deg, #00ffff, #0088ff);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-gamer:hover {
+    background: linear-gradient(90deg, #0088ff, #00ffff);
+    box-shadow: 0 0 10px #00ffff;
+}
+
+a {
+    color: #00ffff;
+}
+a:hover {
+    color: #00ccff;
+    text-decoration: underline;
+}
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card-gamer p-4" style="width: 400px;">
+        <h3 class="text-center mb-4">🎮 Login ACJogos</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% if form.errors %}
+            <div class="alert alert-danger text-center">Usuário ou senha incorretos!</div>
+        {% endif %}
+
+        <form method="post" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Usuário</label>
+                <input type="text" name="username" id="id_username" class="form-control bg-dark text-light border-secondary" required>
+            </div>
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Senha</label>
+                <input type="password" name="password" id="id_password" class="form-control bg-dark text-light border-secondary" required>
+            </div>
+
+            <button type="submit" class="btn btn-gamer w-100 mt-2">Entrar</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small><a href="{% url 'accounts:password_reset' %}">Esqueceu sua senha?</a></small><br>
+            <small>Não tem conta? <a href="{% url 'accounts:registrar' %}">Registrar</a></small>
+        </div>
+    </div>
+</div>
+{% endblock %}

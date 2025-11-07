@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+body {
+    background: radial-gradient(circle at top, #121212, #000);
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card-gamer {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #2a2a2a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    color: #fff;
+}
+
+.btn-gamer {
+    background: linear-gradient(90deg, #00ffff, #0088ff);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-gamer:hover {
+    background: linear-gradient(90deg, #0088ff, #00ffff);
+    box-shadow: 0 0 10px #00ffff;
+}
+
+a {
+    color: #00ffff;
+}
+a:hover {
+    color: #00ccff;
+    text-decoration: underline;
+}
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card-gamer p-4" style="width: 450px;">
+        <h3 class="text-center mb-4">🕹️ Criar Conta</h3>
+
+        {% if form.errors %}
+            <div class="alert alert-danger text-center">Corrija os erros abaixo e tente novamente.</div>
+        {% endif %}
+
+        <form method="post" action="{% url 'accounts:registrar' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-gamer w-100">Registrar</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small>Já tem conta? <a href="{% url 'accounts:login' %}">Entrar</a></small>
+        </div>
+    </div>
+</div>
+{% endblock %}
