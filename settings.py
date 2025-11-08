@@ -2,17 +2,20 @@ import os
 from pathlib import Path
 from decouple import config
 
+
 # Caminho base do projeto
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Segurança
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
-    default='localhost,127.0.0.1',
+    default='localhost,127.0.0.1,45.183.208.135',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
+
 
 # Aplicativos instalados
 INSTALLED_APPS = [
@@ -31,6 +34,7 @@ INSTALLED_APPS = [
     'links',
 ]
 
+
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +46,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'acjogos_intranet.urls'
+
 
 # Templates — corrigido ✅
 TEMPLATES = [
@@ -61,7 +67,9 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'acjogos_intranet.wsgi.application'
+
 
 # Banco de dados
 DATABASES = {
@@ -75,8 +83,10 @@ DATABASES = {
     }
 }
 
+
 # Usuário customizado
 AUTH_USER_MODEL = 'accounts.Usuario'
+
 
 # Validação de senhas
 AUTH_PASSWORD_VALIDATORS = [
@@ -86,28 +96,34 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+
 # Internacionalização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
+
 # Arquivos estáticos
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+
 # Arquivos de mídia
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
 # Tipo padrão de chave primária
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Redirecionamentos de login/logout
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'accounts:dashboard'
 LOGOUT_REDIRECT_URL = 'accounts:login'
+
 
 # Configurações de e-mail
 EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
@@ -118,6 +134,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@acjogos-rj.org.br')
 
+
 # Segurança (modo produção)
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
@@ -126,6 +143,7 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
+
 
 # Limites de upload
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
